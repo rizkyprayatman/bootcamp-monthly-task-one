@@ -1,25 +1,14 @@
-const categoryController = require('../modules/categories/controller/category-controller');
-const projectController = require('../modules/projects/controller/projects-controller');
-const loginController = require('../modules/auth/controller/auth-controller');
-const validation = require('../middleware/validation');
-const auth = require('../middleware/auth');
+const auth = require('./auth.js');
+const category = require('./category.js');
+const project = require('./project.js');
 
-module.exports = (app) => {
-
-    app.post('/login', validation, loginController.login);
-
-    app.get('/api/category', categoryController.findAll);
-    app.get('/api/category/:id', categoryController.findOne);
-    app.post('/api/category', categoryController.create);
-    app.put('/api/category/:id', categoryController.update);
-    app.delete('/api/category/:id', categoryController.delete);
-
-    app.get('/list-project', projectController.findAll);
-    app.get('/api/project', auth, projectController.findAll);
-    app.get('/api/project/:id', auth, projectController.findOne);
-    app.post('/api/project', auth, projectController.create);
-    app.put('/api/project/:id', auth, projectController.update);
-    app.delete('/api/project/:id', auth, projectController.delete);
-
+module.exports = function(express) {
+    const app = express();
+  
+    app.use('/login', auth(express));
+    app.use('/category', category(express));
+    app.use('/project', project(express));
+  
+    return app;
 }
 

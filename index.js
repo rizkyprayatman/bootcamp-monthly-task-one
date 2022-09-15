@@ -13,8 +13,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
-app.get('/', (req, res) => {
-    res.send('This API Project Rolling Glory!');
-});
-
-require('./src/routes')(app);
+app.use('/api', route(express));
