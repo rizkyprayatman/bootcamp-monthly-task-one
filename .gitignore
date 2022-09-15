@@ -1,1 +1,4 @@
+.gitignore
 /node_modules
+/src/routes/category.js
+/src/routes/project.js

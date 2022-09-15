@@ -24,7 +24,7 @@ const ProjectService = {
       include: [
         {
           required: true,
-          association: 'category',
+          association: 'categories',
           attributes: ['id', 'name'],
         },
       ],

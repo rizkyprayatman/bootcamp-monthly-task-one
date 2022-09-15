@@ -3,13 +3,7 @@ const { Category } = require('../../../database/models');
 const CategoryService = {
     findAll: async () => {
         return await Category.findAll({
-            attributes: ['id'],
-            include: [
-                {
-                    required: true,
-                    association: 'projects'
-                },
-            ],
+            attributes: ['id', 'name']
         });
     },
 
@@ -19,13 +13,7 @@ const CategoryService = {
 
     findOne: async (id, res) => {
         const model = await Category.findByPk(id, {
-            attributes: ['id'],
-            include: [
-                {
-                    required: true,
-                    association: 'project'
-                },
-            ],
+            attributes: ['id', 'name']
         });
 
         if (!model) {

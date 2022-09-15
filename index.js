@@ -17,4 +17,4 @@ app.get('/', (req, res) => {
     res.send('This API Project Rolling Glory!');
 });
 
-app.use('/api', route(express));
+require('./src/routes')(app);
